@@ -7,4 +7,8 @@ export default () => ({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
   },
+  jwt: {
+    privateKey: process.env.JWT_SECRET_KEY,
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  },
 })
