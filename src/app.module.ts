@@ -1,11 +1,9 @@
 import {Module} from '@nestjs/common';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import * as Joi from 'joi';
 import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
-import {User} from './users/domain/user.entity';
-import {UsersModule} from './users/users.module';
+import {User} from './modules/users/entities/user.entity';
+import {UsersModule} from './modules/users/users.module';
 import {SnakeNamingStrategy} from 'typeorm-naming-strategies';
 import configuration from './config/configuration';
 
@@ -40,7 +38,5 @@ import configuration from './config/configuration';
     }),
     UsersModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
