@@ -1,5 +1,6 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 import {ApiProperty} from "@nestjs/swagger";
+import {Exclude, instanceToPlain} from 'class-transformer';
 
 @Entity()
 export class User {
@@ -21,4 +22,12 @@ export class User {
 
     @ApiProperty({ description: '회원가입/패스워드 변경 시 ui 에서 전달 될 암호화된 패스워드' })
     savedPassword?: string
+
+    @Exclude()
+    @Column()
+    password?: string
+
+    toJSON() {
+      return instanceToPlain(this);
+    }
 }

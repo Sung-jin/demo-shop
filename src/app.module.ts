@@ -2,9 +2,9 @@ import {Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import * as Joi from 'joi';
 import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
-import {User} from './modules/users/entities/user.entity';
 import {UsersModule} from './modules/users/users.module';
 import {SnakeNamingStrategy} from 'typeorm-naming-strategies';
+import {AuthModule} from './auth/auth.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -32,11 +32,12 @@ import configuration from './config/configuration';
         database: configService.get('database.database'),
         username: configService.get('database.username'),
         password: configService.get('database.password'),
-        entities: [User],
+        autoLoadEntities: true,
         namingStrategy: new SnakeNamingStrategy(),
       } as TypeOrmModuleOptions),
     }),
-    UsersModule
+    AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
