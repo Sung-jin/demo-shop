@@ -2,7 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 
+declare const module: any;
+
 async function bootstrap() {
+  console.log(__dirname);
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('demo shop')
@@ -13,5 +16,10 @@ async function bootstrap() {
   SwaggerModule.setup('document', app, document);
 
   await app.listen(3000);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 bootstrap();
