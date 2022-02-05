@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('demo shop')
     .setDescription('demo shop API description')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('document', app, document);

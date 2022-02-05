@@ -1,6 +1,6 @@
-import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, UseGuards} from '@nestjs/common';
 import {Request} from 'express';
-import {ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse} from "@nestjs/swagger";
+import {ApiCreatedResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse} from "@nestjs/swagger";
 import {AuthGuard} from "@nestjs/passport";
 import {AuthService} from "./auth.service";
 import {User} from "../modules/users/entities/user.entity";

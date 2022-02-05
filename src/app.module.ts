@@ -35,6 +35,7 @@ import configuration from './config/configuration';
         username: configService.get('database.username'),
         password: configService.get('database.password'),
         synchronize: true,
+        keepConnectionAlive: true,
         autoLoadEntities: true,
         namingStrategy: new SnakeNamingStrategy(),
       } as TypeOrmModuleOptions),
