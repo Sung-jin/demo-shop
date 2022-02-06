@@ -20,9 +20,6 @@ export class User {
     @ApiProperty({ description: '핸드폰 번호' })
     phone: string;
 
-    @ApiProperty({ description: '회원가입/패스워드 변경 시 ui 에서 전달 될 암호화된 패스워드' })
-    savedPassword?: string
-
     @Exclude()
     @Column()
     password?: string
