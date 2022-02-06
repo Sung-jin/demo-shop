@@ -1,7 +1,6 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 import {ApiProperty} from "@nestjs/swagger";
 import {Exclude, instanceToPlain} from 'class-transformer';
-import {IsMobilePhone, IsNotEmpty} from "class-validator";
 
 @Entity()
 export class User {
@@ -11,18 +10,20 @@ export class User {
 
     @Column()
     @ApiProperty({ description: '아이디' })
-    @IsNotEmpty()
     loginId: string;
 
     @Column()
     @ApiProperty({ description: '이메일' })
-    @IsNotEmpty()
     email: string;
 
     @Column()
     @ApiProperty({ description: '핸드폰 번호' })
-    @IsMobilePhone()
     phone: string;
+
+    @Column({ default: false })
+    @ApiProperty({ description: '유저 탈퇴여부' })
+    @Exclude()
+    isWithdrawal: boolean;
 
     @Exclude()
     @Column()

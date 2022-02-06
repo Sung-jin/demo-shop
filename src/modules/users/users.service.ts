@@ -13,12 +13,12 @@ export class UsersService {
     private authService: AuthService,
   ) {}
 
-  findOne(id: number): Promise<User> {
-    return this.usersRepository.findOne(id);
+  async findOne(id: number): Promise<User> {
+    return await this.usersRepository.findOne(id);
   }
 
-  findByLoginId(loginId: string): Promise<User | undefined> {
-    return this.usersRepository.findOneByLoginId(loginId);
+  async findByLoginId(loginId: string): Promise<User | undefined> {
+    return await this.usersRepository.findOneByLoginId(loginId);
   }
 
   async join(register: Register): Promise<User> {
@@ -31,5 +31,12 @@ export class UsersService {
     return this.usersRepository.save(
       Object.assign(user, register)
     );
+  }
+
+  async withdrawal(reqUser) {
+    const user = await this.findOne(reqUser.userId);
+    user.isWithdrawal = true;
+
+    await this.usersRepository.save(user);
   }
 }
