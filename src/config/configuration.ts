@@ -9,7 +9,9 @@ export default () => ({
   },
   jwt: {
     privateKey: process.env.JWT_SECRET_KEY,
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    expiresIn: parseInt(process.env.JWT_EXPIRES_IN),
+    refreshPrivateKey: process.env.JWT_REFRESH_SECRET_KEY,
+    refreshExpiresIn: parseInt(process.env.JWT_REFRESH_EXPIRES_IN),
   },
   encryption: {
     secretKey: process.env.ENCRYPTION_SECRET_KEY,

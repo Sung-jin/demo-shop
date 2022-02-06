@@ -21,6 +21,8 @@ import configuration from './config/configuration';
         DB_PASSWORD: Joi.string().required(),
         JWT_SECRET_KEY: Joi.string().required(),
         JWT_EXPIRES_IN: Joi.number().required(),
+        JWT_REFRESH_SECRET_KEY: Joi.string().required(),
+        JWT_REFRESH_EXPIRES_IN: Joi.number().required(),
         ENCRYPTION_SECRET_KEY: Joi.string().required(),
         ENCRYPTION_SECRET_KEY_LENGTH: Joi.number().required(),
         ENCRYPTION_ALGORITHM: Joi.string().required(),

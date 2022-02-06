@@ -30,8 +30,32 @@ export class AuthService {
 
   login(user: User): TokenResponse {
     const payload = { username: user.loginId, sub: user.id };
+    const now = new Date();
+    const token = this.jwtService.sign(payload, {
+      secret: this.configService.get('jwt.privateKey'),
+      expiresIn: this.configService.get('jwt.expiresIn'),
+    });
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: this.configService.get('jwt.refreshPrivateKey'),
+      expiresIn: this.configService.get('jwt.refreshExpiresIn'),
+    });
+
     return {
-      accessToken: this.jwtService.sign(payload)
+      accessToken: token,
+      accessMaxAge: new Date(now.getTime() + this.configService.get('jwt.expiresIn') * 1000),
+      refreshToken: refreshToken,
+      refreshMaxAge: new Date(now.getTime() + this.configService.get('jwt.refreshExpiresIn') * 1000),
+    }
+  }
+
+  async refreshToken(token: string): Promise<TokenResponse> {
+    try {
+      const info = this.jwtService.verify(token, {secret: this.configService.get('jwt.refreshPrivateKey')});
+      const user = await this.usersService.findByLoginId(info.username);
+
+      return this.login(user);
+    } catch (e) {
+      throw new UnauthorizedException();
     }
   }
 
