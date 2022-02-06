@@ -34,29 +34,20 @@ $ npm i -g yarn
 
 # install project package
 $ yarn install
-```
 
-## Test
-
-```bash
-# unit tests
-$ yarn run  test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+# install docker, docker-compose
+https://docs.docker.com/compose/install/
 ```
 
 ## Running the app
 
 ```bash
 # execute infra
-$ docker compose -f path/to/project/docker/docker-infra.yml up -d
+$ docker compose -f path/to/project/docker/docker-compose.yml up -d
 
 # local
 $ yarn run start:local
+# 현재는 local 모드만 설정되어 있음. 나머지 환경으로 실행 불가능
 
 # development
 $ yarn run start
