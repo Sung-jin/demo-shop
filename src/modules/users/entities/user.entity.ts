@@ -20,6 +20,11 @@ export class User {
     @ApiProperty({ description: '핸드폰 번호' })
     phone: string;
 
+    @Column({ default: false })
+    @ApiProperty({ description: '유저 탈퇴여부' })
+    @Exclude()
+    isWithdrawal: boolean;
+
     @Exclude()
     @Column()
     password?: string
