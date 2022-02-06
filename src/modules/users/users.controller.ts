@@ -1,8 +1,9 @@
-import {Body, Controller, Get, Param, Post, Res, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Res, UseGuards} from '@nestjs/common';
 import {Response} from 'express';
 import {User} from './entities/user.entity';
 import {UsersService} from './users.service';
 import {
+  ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
   ApiOkResponse,
@@ -24,6 +25,7 @@ export class UsersController {
   @Post()
   @ApiOperation({ summary: '회원가입', description: '회원가입 요청한다' })
   @ApiCreatedResponse({ description: '회원 가입 성공', type: User })
+  @ApiBadRequestResponse({ description: '회원 가입 실패', type: User })
   async createUser(@Body() register: Register, @Res() res: Response) {
     const user: User = await this.usersService.join(register);
 
