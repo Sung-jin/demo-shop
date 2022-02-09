@@ -34,6 +34,7 @@ export class UsersService {
   }
 
   async withdrawal(reqUser) {
+    // TODO - user entity 랑 형태가 다른 req user 가 존재하는데, 같은 형태로 셋팅 할 수 있는 방법 또는 타입을 일치시킬 방법 찾아보기
     const user = await this.findOne(reqUser.userId);
     user.isWithdrawal = true;
 
