@@ -3,9 +3,9 @@ import {Request} from 'express';
 import {ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse} from "@nestjs/swagger";
 import {AuthGuard} from "@nestjs/passport";
 import {AuthService} from "./auth.service";
-import {User} from "../modules/users/entities/user.entity";
-import {TokenResponse} from "./dto/tokenResponse.dto";
-import {LoginDto} from "./dto/login.dto";
+import {User} from '@/modules/users/entities/user.entity';
+import {TokenResponse} from '@/auth/dto/tokenResponse.dto';
+import {LoginDto} from "@/auth/dto/login.dto";
 
 @Controller('auth')
 @ApiTags('권한 API')

@@ -1,7 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Post, Req, Res, UseGuards} from '@nestjs/common';
 import {Request, Response} from 'express';
-import {User} from './entities/user.entity';
-import {UsersService} from './users.service';
+import {User} from '@/modules/users/entities/user.entity';
+import {UsersService} from '@/modules/users/users.service';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -12,7 +12,7 @@ import {
   ApiUnauthorizedResponse
 } from "@nestjs/swagger";
 import {AuthGuard} from "@nestjs/passport";
-import {Register} from "./dto/register";
+import {Register} from "@/modules/users/dto/register";
 
 @ApiTags('유저 API')
 @Controller('users')
