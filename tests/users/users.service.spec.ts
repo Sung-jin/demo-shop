@@ -1,7 +1,7 @@
 import {Test} from '@nestjs/testing';
 import {v4 as uuidv4} from 'uuid';
 import {BadRequestException} from '@nestjs/common';
-import mockRepository from '../common/mockRepository';
+import mockRepository from '#/common/mockRepository';
 import {User} from '@/modules/users/entities/user.entity';
 import {UsersService} from '@/modules/users/users.service';
 import {UsersRepository} from '@/modules/users/users.repository';

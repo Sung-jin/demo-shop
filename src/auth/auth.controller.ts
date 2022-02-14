@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Req, UseGuards} from '@nestjs/common';
+import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
 import {Request} from 'express';
 import {ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse} from "@nestjs/swagger";
 import {AuthGuard} from "@nestjs/passport";
@@ -21,7 +21,7 @@ export class AuthController {
     return this.authService.login(req.user as User);
   }
 
-  @Get('refresh')
+  @Post('refresh')
   @ApiBearerAuth()
   @ApiOperation({ summary: '재발급', description: 'jwt refresh 토큰으로 재발급을 요청한다' })
   @ApiCreatedResponse({ description: 'jwt 토큰 정보', type: TokenResponse })
