@@ -26,13 +26,13 @@ describe('Auth Controller (e2e)', () => {
   const wrongLoginDto: LoginDto = new LoginDto(mockUser.loginId + '1', mockUser.password + '1');
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [AppModule, UsersModule, AuthModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication();
     await app.init();
-      req = request(app.getHttpServer());
+    req = request(app.getHttpServer());
 
     await req.post('/users')
         .send(mockUser);
@@ -40,7 +40,7 @@ describe('Auth Controller (e2e)', () => {
 
   describe('접근 권한', () => {
     describe('/auth (GET)', () => {
-      it('정상 로그인 시 토큰이 발급된다', async () => {
+      it('정상 로그인 시 토큰이 발급된다',  () => {
         return req.post('/auth/login')
             .send(loginDto)
             .then(res => {
