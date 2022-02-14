@@ -1,6 +1,6 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {IsEmail, IsNotEmpty, IsString, Matches, Validate} from "class-validator";
-import {PasswordValidator} from "../../../common/validator/passwordValidator";
+import {PasswordValidator} from '@/common/validator/passwordValidator';
 
 export class Register {
   @ApiProperty({ description: '회원가입에 사용 될 아이디' })

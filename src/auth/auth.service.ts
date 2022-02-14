@@ -1,8 +1,8 @@
-import {forwardRef, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
-import {UsersService} from "../modules/users/users.service";
+import {BadRequestException, forwardRef, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
+import {UsersService} from '@/modules/users/users.service';
 import {JwtService} from "@nestjs/jwt";
-import {User} from "../modules/users/entities/user.entity";
-import {TokenResponse} from "./dto/tokenResponse.dto";
+import {User} from '@/modules/users/entities/user.entity';
+import {TokenResponse} from "@/auth/dto/tokenResponse.dto";
 import {createCipheriv, randomBytes, scrypt} from "crypto";
 import {promisify} from "util";
 import {ConfigService} from "@nestjs/config";
@@ -23,6 +23,8 @@ export class AuthService {
     if (!!user && bcrypt.compareSync(encryptPassword, user.password)) {
       const { password, ...result } = user;
       return result;
+    } else if (!!user && user.isWithdrawal) {
+      throw new BadRequestException('탈퇴한 회원입니다.');
     } else {
       return null;
     }

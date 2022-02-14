@@ -6,4 +6,9 @@ export class LoginDto {
 
   @ApiProperty({ description: '패스워드' })
   readonly password: string;
+
+  constructor(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
 }

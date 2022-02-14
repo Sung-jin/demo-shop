@@ -2,10 +2,10 @@ import {Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import * as Joi from 'joi';
 import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
-import {UsersModule} from './modules/users/users.module';
+import {UsersModule} from '@/modules/users/users.module';
 import {SnakeNamingStrategy} from 'typeorm-naming-strategies';
-import {AuthModule} from './auth/auth.module';
-import configuration from './config/configuration';
+import {AuthModule} from '@/auth/auth.module';
+import configuration from '@/config/configuration';
 
 @Module({
   imports: [

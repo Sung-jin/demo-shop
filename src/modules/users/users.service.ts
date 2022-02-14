@@ -1,9 +1,9 @@
 import {BadRequestException, Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {User} from './entities/user.entity';
-import {UsersRepository} from "./users.repository";
-import {Register} from "./dto/register";
-import {AuthService} from "../../auth/auth.service";
+import {User} from '@/modules/users/entities/user.entity';
+import {UsersRepository} from "@/modules/users/users.repository";
+import {Register} from "@/modules/users/dto/register";
+import {AuthService} from '@/auth/auth.service';
 
 @Injectable()
 export class UsersService {
@@ -34,7 +34,9 @@ export class UsersService {
   }
 
   async withdrawal(reqUser) {
-    const user = await this.findOne(reqUser.userId);
+    // TODO - user entity 랑 형태가 다른 req user 가 존재하는데, 같은 형태로 셋팅 할 수 있는 방법 또는 타입을 일치시킬 방법 찾아보기
+    // const user = await this.findOne(reqUser.loginId);
+    const user = await this.findByLoginId(reqUser.username);
     user.isWithdrawal = true;
 
     await this.usersRepository.save(user);

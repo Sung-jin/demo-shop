@@ -43,7 +43,7 @@ https://docs.docker.com/compose/install/
 
 ```bash
 # execute infra
-$ docker compose -f path/to/project/docker/docker-compose.yml up -d
+$ docker-compose -f path/to/project/docker/docker-compose.yml up -d
 
 # local
 $ yarn run start:local
@@ -64,3 +64,16 @@ $ yarn run  start:prod
 > Enter the `url/document` after running the app
 > 
 > ex) localhost:3000/document
+
+## Test
+
+```bash
+# unit tests
+$ yarn run test
+
+# e2e tests
+$ yarn run test:e2e
+
+# test coverage
+$ yarn run test:cov
+```
