@@ -14,3 +14,12 @@ CREATE TABLE user (
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE mall (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    owner bigint(20) NOT NULL,
+
+    PRIMARY KEY (id),
+    CONSTRAINT mall_user FOREIGN KEY (owner) REFERENCES user(id)
+);

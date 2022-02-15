@@ -6,6 +6,7 @@ import {UsersModule} from '@/modules/users/users.module';
 import {SnakeNamingStrategy} from 'typeorm-naming-strategies';
 import {AuthModule} from '@/auth/auth.module';
 import configuration from '@/config/configuration';
+import {MallsModule} from '@/modules/malls/malls.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import configuration from '@/config/configuration';
     }),
     AuthModule,
     UsersModule,
+    MallsModule,
   ],
 })
 export class AppModule {}
