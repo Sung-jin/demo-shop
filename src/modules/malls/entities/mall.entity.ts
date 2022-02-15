@@ -19,8 +19,9 @@ export class Mall {
 
     @Column({ nullable: false, type: 'bigint' })
     @ApiProperty({ description: '소유자' })
-    @ManyToOne(type => User)
-    @JoinColumn({ name: 'mall_user', referencedColumnName: 'id' })
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'owner', referencedColumnName: 'id' })
+    // ManyToOne, JoinColumn 내부 옵션에 의해 자동으로 DB 에 적용되는데, 적절한 내부 옵션을 찾아보자
     owner: User;
     // https://www.baeldung.com/database-auditing-jpa
     // TODO - spring Auditing 처럼 jwt 토큰을 기반으로 유저를 자동으로 넣을 수 있는 방법 찾기

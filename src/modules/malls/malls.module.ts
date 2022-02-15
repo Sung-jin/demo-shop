@@ -7,8 +7,8 @@ import {MallsService} from '@/modules/malls/malls.service';
 import {UsersRepository} from '@/modules/users/users.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Mall, MallsRepository]),],
+  imports: [TypeOrmModule.forFeature([Mall, MallsRepository, UsersRepository])],
   controllers: [MallsController],
-  providers: [MallsService, UsersRepository],
+  providers: [MallsService],
 })
 export class MallsModule {}

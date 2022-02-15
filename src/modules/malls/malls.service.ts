@@ -15,10 +15,10 @@ export class MallsService {
 
   async create(createMall: CreateMall, reqUser): Promise<Mall> {
     const mall = this.mallsRepository.create();
-    mall.owner = await this.usersRepository.findOne(reqUser.id || 0);
+    mall.owner = await this.usersRepository.findOne(reqUser.userId || 0);
 
     return this.mallsRepository.save(
-      Object.assign(this.mallsRepository.create(), createMall)
+      Object.assign(mall, createMall)
     );
   }
 }

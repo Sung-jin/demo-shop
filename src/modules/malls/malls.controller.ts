@@ -1,7 +1,7 @@
 import {Body, Controller, Post, Req, Res, UseGuards} from '@nestjs/common';
 import {Request, Response} from 'express';
 import {
-    ApiBadRequestResponse,
+    ApiBadRequestResponse, ApiBearerAuth,
     ApiCreatedResponse,
     ApiOperation,
     ApiTags,
@@ -12,8 +12,9 @@ import {Mall} from '@/modules/malls/entities/mall.entity';
 import {CreateMall} from '@/modules/malls/dto/createMall';
 import {MallsService} from '@/modules/malls/malls.service';
 
-@ApiTags('유저 API')
-@Controller('users')
+@ApiBearerAuth()
+@ApiTags('쇼핑몰 API')
+@Controller('malls')
 export class MallsController {
   constructor(
     private mallsService: MallsService
